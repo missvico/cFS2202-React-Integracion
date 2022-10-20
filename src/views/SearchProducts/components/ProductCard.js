@@ -1,7 +1,12 @@
 function ProductCard({product}) {
+
+    const handleError = ({ currentTarget }) => {
+        currentTarget.onerror = null; // prevents looping
+        currentTarget.src="alternative.png";
+    }
   return (
-    <div className="card">
-      <img src={product.image_link} classNameName="card-img-top" alt="..." />
+    <div className="card" style={{width: "18rem"}}>
+      <img src={product.image_link} alt="Image not found" onError={handleError} className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">
